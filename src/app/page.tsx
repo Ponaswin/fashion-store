@@ -1,6 +1,6 @@
 import CustomButton from '@/components/customize-btn'
 import Image from 'next/image'
-import LandingPage from './_landing-page/page'
+import LandingPage from './landing-page/page'
 
 
 export default function Home() {

@@ -9,6 +9,8 @@ import CustomButton from '@/components/customize-btn';
 import Showcase from './showcase';
 import BannerData from '@/components/banner-data';
 import ProductList from './product-list';
+import ProductSale from './product-sale';
+import InstagramSection from './instagram-section';
 
 
 const Slider = () => {
@@ -23,7 +25,7 @@ const Slider = () => {
                         <div className=' bg-contain'>
                             <Image className='w-full' src={hero1} alt='...' />
                         </div>
-                        <BannerData title={"SUMMER COLLECTION"} heading1={"Fall - Winter"} heading2={"Collection 2030"} content={"A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to exceptional quality."} icon={<FaArrowRightLong />} />
+                        <BannerData bannerStyle="absolute top-[200px] left-[200px] w-[30%] z-1" title={"SUMMER COLLECTION"} heading1={"Fall - Winter"} heading2={"Collection 2030"} content={"A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to exceptional quality."} icon={<FaArrowRightLong />} />
                     </div>
 
                 </div>
@@ -44,6 +46,8 @@ const Slider = () => {
 
             <Showcase />
             <ProductList />
+            <ProductSale />
+            <InstagramSection />
         </div>
 
 

@@ -6,7 +6,7 @@ const ProductCard = (props: any) => {
 
 
     return (
-        <div className='flex flex-col w-[200px] gap-2 mt-[30px]'>
+        <div className='flex flex-col w-full gap-2 cursor-pointer  '>
             <Image src={banner1} alt="..." className='w-full' />
             <p>title</p>
             <div>star rating</div>

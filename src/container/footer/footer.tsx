@@ -34,7 +34,7 @@ const Footer = () => {
         <div className='flex flex-col items-center gap-5'>
           <p className='h2'>NEW LETTER</p>
           <p>Be the first to know about new arrivals, look books, sales & promos!</p>
-          <div className='flex items-center border-b-4 justify-between pb-3 '>
+          <div className='flex items-center border-b-2 justify-between pb-2 '>
             <input placeholder='Your email' type="text" className='border-none outline-none bg-transparent  text-white' />
             <GoMail />
           </div>

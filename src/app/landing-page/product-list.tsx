@@ -17,7 +17,7 @@ const ProductList = () => {
                 <p onClick={() => setTab(3)} className={`cursor-pointer ${tab === 3 ? "text-black" : "text-gray-400"}`}>Hot Sales</p>
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-4 gap-2'>
+            <div className='grid grid-cols-1 md:grid-cols-4 gap-8 w-[75%] mx-auto mt-[30px]' >
                 <ProductCard />
                 <ProductCard />
                 <ProductCard />
@@ -26,7 +26,6 @@ const ProductList = () => {
                 <ProductCard />
                 <ProductCard />
                 <ProductCard />
-
             </div>
 
 
