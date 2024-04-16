@@ -1,11 +1,12 @@
+"use client"
 import React from 'react'
 
-const Blog = () => {
+const blog = () => {
     return (
-        <div>
-            This is blog page
+        <div className='h-[100vh]'>
+
         </div>
     )
 }
 
-export default Blog
+export default blog

@@ -6,7 +6,7 @@ const CustomButton = (props?: any) => {
 
     return (
 
-        <button className={`flex items-center text-[14px] gap-2 font-bold tracking-widest ${btnStyle}`}>
+        <button className={`flex items-center  text-[14px] gap-2 font-bold tracking-widest ${btnStyle}`}>
             {btnName ? btnName : "SHOP NOW"} {icon ? icon : ""}
         </button>
 

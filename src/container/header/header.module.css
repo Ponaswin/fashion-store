@@ -1,0 +1,4 @@
+.link:hover>div {
+    background-color: #e53637;
+    transition: 0.4s;
+}

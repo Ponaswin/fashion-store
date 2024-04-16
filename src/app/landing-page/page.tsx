@@ -6,7 +6,7 @@ import Slider from './slider'
 const LandingPage = () => {
   return (
     <div>
-        <Slider />
+      <Slider />
     </div>
   )
 }

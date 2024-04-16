@@ -7,13 +7,7 @@ import { FaArrowRightLong } from 'react-icons/fa6'
 const ProductSale = () => {
 
 
-    // const daysLeft = () => {
-    //     const date = new Date();
-    //     const expireDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 29);
-    //     const diffTime = Math.abs(expireDate.getTime() - date.getTime());
-    //     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    //     return diffDays;
-    // };
+
 
 
 
@@ -37,7 +31,7 @@ const ProductSale = () => {
             </div>
 
             <div>
-                <BannerData title="DEAL OF THE WEEK" heading1="Multi-pocket Chest" heading2="Bag Black" />
+                <BannerData title="DEAL OF THE WEEK" heading1="Multi-pocket Chest" heading2="Bag Black" content="29 : 17 : 56 : 32" contentStyle="text-[30px] font-semibold" />
             </div>
 
 

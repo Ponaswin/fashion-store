@@ -3,3 +3,16 @@
     width: 30px;
     background-color: rgb(213, 79, 26);
 }
+
+
+.horizontal {
+    width: 33%;
+    height: 2px;
+    background-color: rgb(0, 0, 0);
+}
+
+
+.shadow:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: 0.5s;
+}
