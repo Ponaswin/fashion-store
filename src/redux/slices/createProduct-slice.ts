@@ -1,19 +1,21 @@
 import { getAllProducts } from "../../api/list";
+import { deleteProduct } from "@/api/delete";
+import { createProduct } from "@/api/create";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: any = {};
 
-export const fetchAllProducts: any = createAsyncThunk(
-  "getallproducts",
+export const fetchCreateProduct: any = createAsyncThunk(
+  "create/product",
   async (params: any, { dispatch }) => {
-    const res: any = await getAllProducts(params);
+    const res: any = await createProduct(params);
     dispatch(getListedItems(res));
     return res;
   }
 );
 
-export const ListedItemsSlice = createSlice({
-  name: "products",
+export const listedCreatedSlice = createSlice({
+  name: "createProduct",
   initialState,
   reducers: {
     getListedItems: (state: any, action: PayloadAction<any>) => {
@@ -24,5 +26,5 @@ export const ListedItemsSlice = createSlice({
   },
 });
 
-export default ListedItemsSlice.reducer;
-export const { getListedItems } = ListedItemsSlice.actions;
+export default listedCreatedSlice.reducer;
+export const { getListedItems } = listedCreatedSlice.actions;

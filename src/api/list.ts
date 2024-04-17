@@ -1,8 +1,12 @@
-import { getListByApi } from "./action";
+import { getListByApi, getListByIdApi } from "./action";
 import { URL_CONSTANTS } from "./urls";
 
 const getAllProducts = async (params?: any) => {
-  return await getListByApi(URL_CONSTANTS.all_products);
+  return await getListByApi(URL_CONSTANTS.all_products, params);
 };
 
-export { getAllProducts };
+const getProduct = async (params: any) => {
+  return await getListByIdApi(URL_CONSTANTS.all_products, params);
+};
+
+export { getAllProducts, getProduct };

@@ -1,18 +1,19 @@
 import { getAllProducts } from "../../api/list";
+import { deleteProduct } from "@/api/delete";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: any = {};
 
-export const fetchAllProducts: any = createAsyncThunk(
+export const fetchDeleteProduct: any = createAsyncThunk(
   "getallproducts",
   async (params: any, { dispatch }) => {
-    const res: any = await getAllProducts(params);
+    const res: any = await deleteProduct(params);
     dispatch(getListedItems(res));
     return res;
   }
 );
 
-export const ListedItemsSlice = createSlice({
+export const listedUpdatedSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
@@ -24,5 +25,5 @@ export const ListedItemsSlice = createSlice({
   },
 });
 
-export default ListedItemsSlice.reducer;
-export const { getListedItems } = ListedItemsSlice.actions;
+export default listedUpdatedSlice.reducer;
+export const { getListedItems } = listedUpdatedSlice.actions;

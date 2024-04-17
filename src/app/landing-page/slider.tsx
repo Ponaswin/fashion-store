@@ -9,12 +9,15 @@ import hero2 from '../../../public/assets/images/hero2.jpg'
 import Showcase from './showcase';
 import BannerData from '@/components/banner-data';
 import ProductList from './product-list';
+import { useRouter } from 'next/navigation';
 import ProductSale from './product-sale';
 import InstagramSection from './instagram-section';
 import NewTrends from './new-trends';
 import style from './slider.module.css'
 
 const Slider = () => {
+
+    const router = useRouter()
 
     const [arrowClick, setArrowClick] = useState<boolean>(false)
 
