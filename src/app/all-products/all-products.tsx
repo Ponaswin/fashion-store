@@ -10,6 +10,7 @@ import Model from '@/components/model'
 import toast from 'react-hot-toast';
 import AddToCart from '@/components/add-to-cart';
 import { useFormik } from "formik";
+
 import * as yup from "yup";
 
 
@@ -17,14 +18,52 @@ import * as yup from "yup";
 const AllProducts = () => {
 
     const dispatch = useDispatch()
+    const [allProducts, setAllProducts] = useState<any>([])
     const [show, setShow] = useState<boolean>(false)
+    const [sort, setSort] = useState<string>('lowToHigh')
+    const [searchValue, setSearchValue] = useState<string>('')
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 12;
+
+
 
 
     useEffect(() => {
-        dispatch(fetchAllProducts())
+        dispatch(fetchAllProducts()).then((res: any) => {
+            setAllProducts(res?.payload)
+        })
     }, [])
 
-    const allProducts = useSelector((state: any) => state?.products)
+    // const allProducts = useSelector((state: any) => state?.products)
+    const filteredProducts = allProducts.filter((product: any) => {
+        return product.name.toLowerCase().includes(searchValue.toLowerCase())
+    })
+
+    const sortedProducts = filteredProducts.sort((a: any, b: any) => {
+        if (sort === 'lowToHigh') {
+            return a.price - b.price
+        } else if (sort === 'highToLow') {
+            return b.price - a.price
+        } else {
+            return 0
+        }
+    })
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+    const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
+    const handleSearch = (e: any) => {
+        setSearchValue(e.target.value)
+    }
+
+
+    const handleSortChange = (e: any) => {
+        setSort(e.target.value);
+    };
+
+
+
+
     const router = useRouter()
 
     const handleAddToCart = () => {
@@ -45,7 +84,6 @@ const AllProducts = () => {
             img: "",
             category: ""
         },
-
         validationSchema: yup.object({
             name: yup.string().required("Required"),
             price: yup.string().required("Required"),
@@ -57,7 +95,9 @@ const AllProducts = () => {
                 formik.resetForm()
                 toast.success("Product Created Successfully")
                 setShow(false)
-                dispatch(fetchAllProducts())
+                dispatch(fetchAllProducts()).then((res: any) => {
+                    setAllProducts(res?.payload)
+                })
             })
         }
     })
@@ -151,36 +191,57 @@ const AllProducts = () => {
 
 
             <div className='flex  gap-5'>
-                <div className=' w-[30%]'>
-                    <p className='text-center text-[25px] font-semibold mb-3'>Filter</p>
-                    <div className='flex items-center mx-auto px-2 w-[60%] border bg-gray-100 h-[45px]'><input placeholder='Search...' className='outline-none w-full bg-transparent border-none' type="text" /> <FaSearch color='gray' />
+                <div className=' sticky top-2 border shadow ms-[20px] h-[300px] w-[30%]'>
+                    <p className=' ms-[95px] text-[25px] font-semibold my-3'>Search product</p>
+                    <div className='flex items-center mx-auto px-2 w-[60%] border bg-gray-100 h-[45px]'>
+                        <input
+                            placeholder='Search...'
+                            onChange={handleSearch}
+                            value={searchValue}
+                            className='outline-none w-full bg-transparent border-none'
+                            type="text" /> <FaSearch color='gray'
+
+                        />
                     </div>
-                    <div>
-                        <p>Price</p>
-                        <p>0$ to 10$</p>
-                        <p>0$ to 10$</p>
-                        <p>0$ to 10$</p>
-                        <p>0$ to 10$</p>
+                    <div className='ms-[95px]'>
+                        <p className=' text-[25px] mt-5 font-semibold mb-3'>Price</p>
+
+                        <select onChange={handleSortChange} value={sort} className='w-[60%] border h-[45px] bg-gray-100' name="price" id="">
+                            <option value="lowToHigh">Low to High</option>
+                            <option value="highToLow">High to Low</option>
+                        </select>
                     </div>
                 </div>
 
-                <div className='grid grid-cols-1 gap-5 md:grid-cols-3 mb-5 w-[65%]'>
+                <div className='w-[65%]'>
+                    <p className='text-[15px] mb-2 font-semibold'>Showing {currentProducts.length} of {allProducts.length} records </p>
 
+                    <div className='grid grid-cols-1 gap-5 md:grid-cols-3 mb-5 w-[100%]'>
 
-                    {allProducts?.length > 0 && allProducts?.map((product: any) => {
-                        return (
-                            <div>
+                        {currentProducts?.map((product: any) => {
+                            return (
+                                <div className='border rounded p-2' >
+                                    <div onClick={() => { handleIndividualProduct(product.id) }}><ProductCard key={product.id} productName={product?.name} productPrice={product?.price} productImg={product?.img} /></div>
+                                    <div onClick={() => handleAddToCart()} className='mt-2 cursor-pointer w-[50%]'><AddToCart /></div>
+                                </div>
+                            )
 
-                                <div onClick={() => { handleIndividualProduct(product.id) }}><ProductCard key={product.id} productName={product?.name} productPrice={product?.price} productImg={product?.img} /></div>
-                                <div onClick={() => handleAddToCart()} className='mt-2 cursor-pointer w-[50%]'><AddToCart /></div>
-                            </div>
-                        )
+                        })}
 
-                    })}
-
-
+                    </div>
                 </div>
+            </div>
 
+            <div className='flex justify-center my-5'>
+                {Array.from({ length: Math.ceil(filteredProducts.length / productsPerPage) }).map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => paginate(index + 1)}
+                        className={`px-3 py-1 mx-1 rounded-full ${currentPage === index + 1 ? 'bg-green-500' : 'text-black bg-transparent'}`}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
             </div>
 
         </div>

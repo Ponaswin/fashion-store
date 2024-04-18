@@ -48,8 +48,10 @@ const ProductList = () => {
                     return (
                         <div>
 
-                            <div onClick={() => handleIndividualProduct(product?.id)}><ProductCard id={product?.id} key={product.id} productName={product?.name} productPrice={product?.price} productImg={product?.img} /></div>
-                            <div onClick={() => handleAddToCart()} className='mt-2 cursor-pointer w-[50%]'><AddToCart /></div>
+                            <div className='border rounded p-2'>
+                                <div onClick={() => handleIndividualProduct(product?.id)}><ProductCard id={product?.id} key={product.id} productName={product?.name} productPrice={product?.price} productImg={product?.img} /></div>
+                                <div onClick={() => handleAddToCart()} className='mt-2 cursor-pointer w-[100%]'><AddToCart /></div>
+                            </div>
 
                         </div>
                     )

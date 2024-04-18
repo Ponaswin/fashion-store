@@ -6,28 +6,49 @@ import Logo from '../../../public/assets/images/logo.png'
 // --------------------------React icons ------------------------------------
 import { FiSearch } from "react-icons/fi";
 import { AiOutlineShopping } from "react-icons/ai";
+import { MdOutlineShoppingCart } from "react-icons/md";
+
 import { IoIosArrowDown } from "react-icons/io";
 import style from './header.module.css'
 import { FaRegHeart } from "react-icons/fa";
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { SidePopup } from '@/components/side-model';
+import { useDispatch, useSelector } from 'react-redux'
 
 const Header = () => {
     const pathname = usePathname();
     const [active, setActive] = useState<any>("home")
+    const [show, setShow] = useState<boolean>(false)
     const [activeDropdown, setActiveDropdown] = useState<any>(false)
+    const getUser = useSelector((state: any) => state.createUser)
+    const loggedUser = useSelector((state: any) => state.loginUser)
+
+    const dispatch = useDispatch()
+    const router = useRouter()
+    console.log(getUser, "getUser")
+    console.log(loggedUser?.access_token, "loggedUser")
 
 
-
-
-
+    const handleLogout = () => {
+        localStorage.clear();
+        router.push("/signin");
+    }
     return (
         <div>
+
+            <SidePopup show={show} setShow={setShow} title="Cart Items" >
+                <div className='text-center text-white'>
+                    karthik
+                </div>
+
+            </SidePopup>
+
             <nav className="">
                 <div className='bg-[#171717] flex text-white text-[14px] py-3 justify-around  '>
                     <p>Free Shipping, 30-day return or refund guarantee.</p>
                     <div className='flex gap-[40px] '>
-                        <Link href="/signin">SIGN IN</Link>
+                        <div className='uppercase cursor-pointer hover:text-gray-300' onClick={handleLogout}>{getUser?.token || loggedUser?.access_token ? "Log Out" : "Sign In"}</div>
                         <p>FAQS</p>
                         <p className='flex items-center gap-1'>USD <span><IoIosArrowDown /></span></p>
                     </div>
@@ -35,7 +56,7 @@ const Header = () => {
 
                 <div className="h-[80px]  w-full flex gap-[100px] flex-wrap items-center justify-evenly p-4 shadow">
 
-                    <Image src={Logo} width={200} alt="Logo" />
+                    <div className='cursor-pointer' onClick={() => router.push("/")}><Image src={Logo} width={200} alt="Logo" /></div>
 
 
 
@@ -75,7 +96,9 @@ const Header = () => {
                     <div className=' items-center flex gap-4'>
                         <FiSearch className='w-5 h-4' />
                         <FaRegHeart className='w-4 h-4' />
-                        <div className='flex items-center gap-1'><AiOutlineShopping className='w-[20px] h-[20px]' /><span>$0.00</span></div>
+                        <div onClick={() => setShow(true)} className='cursor-pointer relative p-2 rounded-full hover:bg-gray-200 flex items-center gap-1'><MdOutlineShoppingCart className='w-[20px] h-[20px]' />
+                            <span className='bg-black text-white py-0 absolute top-0 left-5 px-1 text-[9px] rounded-full'>0</span>
+                        </div>
                     </div>
 
                 </div>
