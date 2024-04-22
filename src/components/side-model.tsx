@@ -24,7 +24,7 @@ export const SidePopup = (props: any) => {
     } = props;
 
     const router = useRouter();
-    const { totalCount, totalAmount, items } = useSelector((state: any) => state.cart)
+    const { totalCount, totalAmount, items } = useSelector((state: any) => state?.cart)
 
 
 
@@ -84,7 +84,7 @@ export const SidePopup = (props: any) => {
 
                             <div className="flex text-white my-2 items-center justify-between">
                                 <p>Total : </p>
-                                <p>${totalAmount.toFixed(2)}</p>
+                                <p>${totalAmount?.toFixed(2)}</p>
                             </div>
                             <div onClick={() => handleClearCart()} className="cursor-pointer hover:bg-red-700 text-[18px] w-full mb-2 bg-red-600 text-center text-white rounded py-3">
                                 Clear All

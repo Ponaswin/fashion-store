@@ -14,6 +14,7 @@ import NoResultFound from '@/components/no-result-found';
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { getCartTotal, addToCart } from '@/redux/slices/cart-slice';
+import { SidePopup } from '@/components/side-model';
 
 
 
@@ -24,8 +25,12 @@ const AllProducts = () => {
     const [show, setShow] = useState<boolean>(false)
     const [sort, setSort] = useState<string>('lowToHigh')
     const [searchValue, setSearchValue] = useState<string>('')
+
+
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState<boolean>(true)
+    const getUser = useSelector((state: any) => state.createUser?.token)
+    const loggedUser = useSelector((state: any) => state.loginUser?.access_token)
     const productsPerPage = 12;
     const { items, totalAmount, totalCount } = useSelector((state: any) => state?.cart)
 
@@ -84,7 +89,11 @@ const AllProducts = () => {
         router.push(`/product/${id}`)
     }
     const handleCreate = () => {
-        setShow(true)
+        if (getUser || loggedUser) {
+            setShow(true)
+        } else {
+            router.push('/signin')
+        }
     }
 
     const formik = useFormik({
@@ -116,7 +125,12 @@ const AllProducts = () => {
 
 
     return (
+
+
+
         <div className='min-h-[100vh]'>
+
+
 
             <Model
                 backGroundStyle="bg-[#2c3e50]"
@@ -192,17 +206,47 @@ const AllProducts = () => {
                 </form>
             </Model>
 
+
+
             <div className='my-[50px] w-[100%] px-[50px] mx-auto   flex justify-between items-center'>
-                <p className='  text-[30px] font-semibold'>SHOP</p>
-                <button onClick={() => handleCreate()} className="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm inline-flex items-center px-[40px] py-3 text-center">
+                <p className='  md:text-[30px] font-semibold'>SHOP</p>
+                <button onClick={() => handleCreate()} className="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 md:px-[40px] py-3 text-center">
                     Add Product
                 </button>
             </div>
 
+            <div className='border mx-auto mb-2 rounded p-5 w-[95%] block md:hidden'>
+                <div>
+                    <div>
 
-            <div className='flex  gap-5'>
-                <div className=' sticky top-2 border shadow ms-[20px] h-[300px] w-[30%]'>
-                    <p className=' ms-[95px] text-[25px] font-semibold my-3'>Search product</p>
+                        <p>Search product</p>
+                        <div className='flex items-center mx-auto px-2 h-[40px] border bg-gray-100'>
+                            <input
+                                placeholder='Search...'
+                                onChange={handleSearch}
+                                value={searchValue}
+                                className='outline-none w-full bg-transparent border-none'
+                                type="text" /> <FaSearch color='gray'
+
+                            />
+                        </div>
+                    </div>
+                    <div className='mt-5'>
+
+                        <p>Price</p>
+                        <select onChange={handleSortChange} value={sort} className=' w-[100%] cursor-pointer border h-[40px] bg-gray-100' name="price" id="">
+                            <option value="lowToHigh">Low to High</option>
+                            <option value="highToLow">High to Low</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div className='flex gap-5'>
+
+
+                <div className=' hidden md:block border sticky top-5 shadow ms-[20px] h-[300px] w-[30%]'>
+                    <p className=' ms-[92px] text-[25px] font-semibold my-3'>Search product</p>
                     <div className='flex items-center mx-auto px-2 w-[60%] border bg-gray-100 h-[45px]'>
                         <input
                             placeholder='Search...'
@@ -213,27 +257,27 @@ const AllProducts = () => {
 
                         />
                     </div>
-                    <div className='ms-[95px]'>
+                    <div className='ms-[92px]'>
                         <p className=' text-[25px] mt-5 font-semibold mb-3'>Price</p>
 
-                        <select onChange={handleSortChange} value={sort} className='w-[60%] border h-[45px] bg-gray-100' name="price" id="">
+                        <select onChange={handleSortChange} value={sort} className='w-[75%] cursor-pointer border h-[45px] bg-gray-100' name="price" id="">
                             <option value="lowToHigh">Low to High</option>
                             <option value="highToLow">High to Low</option>
                         </select>
                     </div>
                 </div>
 
-                <div className='w-[65%]'>
-                    <p className='text-[15px] mb-2 font-semibold'>Showing {currentProducts.length} of {allProducts.length} records </p>
+                <div className='md:w-[65%] w-[98%] mx-auto '>
+                    <p className='text-[15px] text-center md:text-start mb-2 font-semibold'>Showing {currentProducts.length} of {allProducts.length} records </p>
 
-                    {currentProducts?.length > 0 ? <div className='grid grid-cols-1 gap-5 md:grid-cols-3 mb-5 w-[100%]'>
+                    {currentProducts?.length > 0 ? <div className='grid grid-cols-2 gap-5 md:grid-cols-3 mb-5 w-[100%]'>
 
                         {currentProducts?.map((product: any) => {
                             return (
                                 <div key={product.id} className='border rounded p-2' >
                                     <div onClick={() => { handleIndividualProduct(product.id) }}>
                                         <ProductCard key={product.id} productName={product?.name} productPrice={product?.price} productImg={product?.img} /></div>
-                                    <div onClick={() => handleAddToCart(product)} className='mt-2 cursor-pointer w-[50%]'><AddToCart /></div>
+                                    <div><AddToCart product={product} /></div>
                                 </div>
                             )
 
@@ -260,6 +304,7 @@ const AllProducts = () => {
             </div>
 
         </div>
+
     )
 }
 

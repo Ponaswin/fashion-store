@@ -77,7 +77,11 @@ const SignIn = () => {
                     <div>
                         <p className='text-end'>Don't have an account? <Link href="/signup" className='text-[#3d87db] underline'>Sign Up</Link></p>
                     </div>
+
                     <button type="submit" className='mt-5 w-[100%] h-[50px] py-[12px] px-[30px] hover:bg-cyan-700 bg-[#3d87db] text-white font-medium rounded-md'>Login</button>
+                    <div className='text-center cursor-pointer ' onClick={() => router.push('/')}>
+                        Back to Home
+                    </div>
 
 
 

@@ -32,10 +32,7 @@ const ProductList = () => {
         router.push(`/product/${id}`)
     }
 
-    const handleAddToCart = (item: any) => {
-        dispatch(addToCart(item))
-        toast.success("Added successfully")
-    }
+
 
 
     return (
@@ -58,13 +55,13 @@ const ProductList = () => {
 
                                     id={product?.id}
                                     productName={product?.name}
-                                    productPrice={product?.price} F
+                                    productPrice={product?.price}
                                     productImg={product?.img}
                                 />
                             </div>
-                            <div onClick={() => handleAddToCart(product)} className='mt-2 cursor-pointer w-[100%]'>
-                                <AddToCart />
-                            </div>
+
+                            <AddToCart product={product} />
+
                         </div>
 
 

@@ -10,13 +10,11 @@ import cartSlice from "./slices/cart-slice";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-
 const persistConfig = {
   key: "root",
   storage,
   version: 1,
 };
-
 
 const reducer = combineReducers({
   products: ListedItemsSlice,
@@ -27,11 +25,9 @@ const reducer = combineReducers({
   createUser: createUserSlice,
   loginUser: userLoginSlice,
   cart: cartSlice,
-
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
-
 
 const store = configureStore({
   reducer: persistedReducer,

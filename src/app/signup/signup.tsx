@@ -114,6 +114,9 @@ const SignUp = () => {
           </div>
           <button type="submit" className='mt-5 w-[100%] h-[50px] py-[12px] px-[30px] hover:bg-cyan-700 bg-[#3d87db] text-white font-medium rounded-md'>Create Account</button>
         </form>
+        <div className='cursor-pointer text-center mt-3' onClick={() => router.push('/signin')} >
+          Back to Login
+        </div>
 
 
       </div>

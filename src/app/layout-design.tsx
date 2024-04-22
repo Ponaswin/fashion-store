@@ -18,7 +18,7 @@ const LayoutDesign = ({ children }: { children: React.ReactNode }) => {
             <PersistGate loading={
 
                 <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
-                    <Spinner classname={" w-[100px] h-[100px]   "} />
+                    <Spinner classname={" w-[80px] h-[80px]   "} />
                 </div>
             } persistor={persistStore(store)}>
 

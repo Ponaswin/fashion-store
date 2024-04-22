@@ -15,6 +15,7 @@ import InstagramSection from './instagram-section';
 import NewTrends from './new-trends';
 import style from './slider.module.css'
 import NoResultFound from '@/components/no-result-found';
+import hero2edit from '../../../public/assets/images/hero2edit.jpg'
 
 const Slider = () => {
 
@@ -29,34 +30,45 @@ const Slider = () => {
                 {/* <!-- Carousel wrapper --> */}
                 <div className="relative overflow-hidden  ">
                     {/* <!-- Item 1 --> */}
-                    <div className={` ${style.slider}w-full h-[100vh]`} data-carousel-item>
-                        <div className=' bg-contain'>
+                    <div className={` hidden md:block ${style.slider}w-full h-[100vh]`} data-carousel-item>
+                        <div className=' md:bg-contain'>
                             <Image className='w-full' src={arrowClick ? hero1 : hero2} alt='...' />
                         </div>
-                        <BannerData bannerStyle="absolute top-[200px] left-[200px] w-[30%] z-1" title={"SUMMER COLLECTION"} heading1={"Fall - Winter"} heading2={"Collection 2030"} content={"A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to exceptional quality."} contentStyle="text-[14px]" icon={<FaArrowRightLong />} />
+                        <div className='md:block hidden'>
+                            <BannerData bannerStyle="absolute top-[200px] left-[200px] w-[30%] z-1" title={"SUMMER COLLECTION"} heading1={"Fall - Winter"} heading2={"Collection 2030"} content={"A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to exceptional quality."} contentStyle="text-[14px]" icon={<FaArrowRightLong />} />
+                        </div>
                     </div>
+
+                    <div className={` ${style.slider}w-full h-[100vh] block md:hidden`} data-carousel-item>
+                        <div className=' block md:hidden md:bg-contain'>
+                            <Image className='w-full h-full' src={hero2edit} alt='...' />
+                        </div>
+
+                    </div>
+
 
                 </div>
                 {/* <!-- Slider controls --> */}
-                <button onClick={() => setArrowClick(!arrowClick)} type="button" className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                {/* <button onClick={() => setArrowClick(!arrowClick)} type="button" className="md:block hidden absolute top-0 start-0 z-30  items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
                     <span className="inline-flex items-center justify-center w-10 h-10 ">
-                        <FaArrowLeftLong size={25} color='' />
+                        <FaArrowLeftLong className='md:block hidden' size={25} color='' />
                         <span className="sr-only">Previous</span>
                     </span>
                 </button>
-                <button onClick={() => setArrowClick(!arrowClick)} type="button" className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                <button onClick={() => setArrowClick(!arrowClick)} type="button" className="md:block hidden absolute top-0 end-0 z-30  items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
                     <span className="inline-flex items-center justify-center w-10 h-10  ">
                         <FaArrowRightLong size={25} color='' />
                         <span className="sr-only">Next</span>
                     </span>
                 </button>
+             */}
             </div>
-
             {/* <Showcase /> */}
             <ProductList />
             <ProductSale />
             <InstagramSection />
             <NewTrends />
+
         </div>
 
 

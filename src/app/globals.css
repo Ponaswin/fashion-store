@@ -16,6 +16,8 @@
   }
 }
 
-body {
-  
+html {
+  scroll-behavior: smooth;
 }
+
+body {}

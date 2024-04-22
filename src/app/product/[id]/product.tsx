@@ -85,21 +85,21 @@ const Product = () => {
 
         <div>
 
-            <p className='text-[40px] font-bold text-center mt-5'>Product</p>
+            <p className='md:text-[40px] text-[20px] font-bold text-center mt-5'>Product</p>
 
 
 
             <div className=' border md:flex p-5 gap-10 rounded mt-5 mb-[50px] shadow w-[90%] mx-auto'>
                 <div className='shadow border'><Image width={400} height={400} src={product?.img} alt="..." /></div>
-                <div className='flex flex-col mt-5 gap-8'>
-                    <p className='text-[20px] font-bold'> Name :     <span className=' capitalize ms-4 text-[18px] text-gray-600 font-medium'> {product?.name}    </span>  </p>
-                    <p className='text-[20px] font-bold'> Price :    <span className=' capitalize ms-5 text-[18px] text-gray-600 font-medium'>${product?.price}   </span> </p>
-                    <p className='text-[20px] font-bold'>Image :     <span className=' capitalize ms-3 text-[18px] text-gray-600 font-medium'> {product?.img}     </span>   </p>
-                    <p className='text-[20px] font-bold'>Category :  <span className=' capitalize ms-2 text-[18px] text-gray-600 font-medium'> {product?.category}</span>   </p>
+                <div className=' overflow-hidden flex flex-col mt-5 gap-8'>
+                    <p className=' md:text-[20px] font-bold'> Name :     <span className=' capitalize ms-4 md:text-[18px] text-gray-600 font-medium'> {product?.name}    </span>  </p>
+                    <p className=' md:text-[20px] font-bold'> Price :    <span className=' capitalize ms-5 md:text-[18px] text-gray-600 font-medium'>${product?.price}   </span> </p>
+                    <p className=' md:text-[20px] font-bold'>Image :     <span className=' capitalize ms-3 md:text-[18px] text-gray-600 font-medium'> {product?.img}     </span>   </p>
+                    <p className=' md:text-[20px] font-bold'>Category :  <span className=' capitalize ms-2 md:text-[18px] text-gray-600 font-medium'> {product?.category}</span>   </p>
                     <div className=" w-content mt-[20px] flex gap-[40px]">
-                        <button onClick={() => handleUpdate()} className="py-3 px-5  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Edit Product</button>
+                        <button onClick={() => handleUpdate()} className="md:py-3 p-2 md:px-5  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Edit Product</button>
 
-                        <button onClick={() => showDeleteModel()} className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-[40px] py-3 text-center">
+                        <button onClick={() => showDeleteModel()} className="text-white p-2 bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center md:px-[40px] md:py-3 text-center">
                             Delete
                         </button>
 
@@ -115,9 +115,9 @@ const Product = () => {
             <Model show={show} setShow={setShow} title={"Delete Product"} handleClose={handleClose} backGroundStyle="bg-gray-600"  >
 
                 {deleteShow ?
-                    <div className='flex  flex-col justify-center gap-5 mx-[60px] mb-[10px] items-center '>
+                    <div className='flex  flex-col justify-center gap-5 md:mx-[60px] md:mb-[10px] items-center '>
                         <PiWarningCircle size={80} color='white' />
-                        <p className='text-[20px] text-gray-400'>Are you sure you want to delete this product?</p>
+                        <p className='md:text-[20px] text-gray-400'>Are you sure you want to delete this product?</p>
                         <div>
                             <button onClick={() => handleDelete()} type="button" className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                 Yes, Im sure
@@ -126,7 +126,7 @@ const Product = () => {
                         </div>
                     </div> :
 
-                    <form className='w-[500px]' onSubmit={formik.handleSubmit}>
+                    <form className='md:w-[500px]' onSubmit={formik.handleSubmit}>
                         <div className='flex flex-col gap-2 '>
                             <label className='text-white' htmlFor="name">Product Name : </label>
                             <input

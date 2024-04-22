@@ -8,30 +8,30 @@ import { GoMail } from "react-icons/go";
 
 const Footer = () => {
   return (
-    <div className='bg-[#111111] w-full px-[150px] py-[60px] '>
-      <div className='text-white text-center grid grid-cols-1 md:grid-cols-4  '>
-        <div className='flex flex-col items-center gap-5 '>
+    <div id='contact' className='bg-[#111111] w-full p-5 md:px-[150px] md:py-[60px] '>
+      <div className='text-white  text-center grid grid-cols-1 md:grid-cols-4  '>
+        <div className='flex w-[100%] p-5 md:border-none border-b border-gray-400 flex-col items-center gap-5 '>
           <Image src={footer} width={200} alt="Logo" />
           <p>The customer is at the heart of our unique business model, which includes design.</p>
           <div>
-            <Image src={payment} width={200} alt="payment" />
+            <Image className='cursor-pointer' src={payment} width={200} alt="payment" />
           </div>
         </div>
-        <div className='flex flex-col items-center gap-5'>
+        <div className='flex w-[100%] p-5 md:border-none border-b border-gray-400 flex-col items-center gap-5'>
           <p className='h2'>SHOPPING</p>
-          <p>Clothing Store</p>
-          <p>Trending Shoes</p>
-          <p>Accessories</p>
-          <p>Sale</p>
+          <p className='cursor-pointer text-gray-300 hover:text-gray-500'>Clothing Store</p>
+          <p className='cursor-pointer text-gray-300 hover:text-gray-500'>Trending Shoes</p>
+          <p className='cursor-pointer text-gray-300 hover:text-gray-500'>Accessories</p>
+          <p className='cursor-pointer text-gray-300 hover:text-gray-500'>Sale</p>
         </div>
-        <div className='flex flex-col items-center gap-5'>
+        <div className='flex w-[100%] p-5 md:border-none border-b border-gray-400 flex-col items-center gap-5'>
           <p className='h2'>SHOPPING</p>
-          <p>Contact Us</p>
-          <p>Payment Methods</p>
-          <p>Delivery</p>
-          <p>Return & Exchanges</p>
+          <p className='cursor-pointer text-gray-300 hover:text-gray-500'>Contact Us</p>
+          <p className='cursor-pointer text-gray-300 hover:text-gray-500'>Payment Methods</p>
+          <p className='cursor-pointer text-gray-300 hover:text-gray-500'>Delivery</p>
+          <p className='cursor-pointer text-gray-300 hover:text-gray-500'>Return & Exchanges</p>
         </div>
-        <div className='flex flex-col items-center gap-5'>
+        <div className='flex w-[100%] p-5  flex-col items-center gap-5'>
           <p className='h2'>NEW LETTER</p>
           <p>Be the first to know about new arrivals, look books, sales & promos!</p>
           <div className='flex items-center border-b-2 justify-between pb-2 '>

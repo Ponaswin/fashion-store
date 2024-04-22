@@ -37,7 +37,7 @@ const cartSlice = createSlice({
             state.totalCount = totalCount;
         },
         addToCart: (state, action) => {
-            const itemIndex = state.items.findIndex((item) => item.id === action.payload.id);
+            const itemIndex = state.items.findIndex((item) => item.id === action?.payload?.id);
             if (itemIndex >= 0) {
                 state.items[itemIndex].amount += 1;
             } else {
