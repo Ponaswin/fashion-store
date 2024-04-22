@@ -6,6 +6,18 @@ import createUserSlice from "./slices/create-user-slice";
 import listedCreatedSlice from "./slices/createProduct-slice";
 import updateProductSlice from "./slices/update-product-slice";
 import userLoginSlice from "./slices/login-user-slice";
+import cartSlice from "./slices/cart-slice";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+
+const persistConfig = {
+  key: "root",
+  storage,
+  version: 1,
+};
+
+
 const reducer = combineReducers({
   products: ListedItemsSlice,
   product: listItemSLice,
@@ -14,10 +26,15 @@ const reducer = combineReducers({
   updateProduct: updateProductSlice,
   createUser: createUserSlice,
   loginUser: userLoginSlice,
+  cart: cartSlice,
+
 });
 
+const persistedReducer = persistReducer(persistConfig, reducer);
+
+
 const store = configureStore({
-  reducer,
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 

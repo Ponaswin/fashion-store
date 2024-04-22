@@ -2,6 +2,10 @@ import React from "react";
 import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { clearCart } from "@/redux/slices/cart-slice";
+import { useDispatch, useSelector } from "react-redux";
+
 export const SidePopup = (props: any) => {
     const {
         modelStyle,
@@ -20,6 +24,15 @@ export const SidePopup = (props: any) => {
     } = props;
 
     const router = useRouter();
+    const { totalCount, totalAmount, items } = useSelector((state: any) => state.cart)
+
+
+
+    const dispatch = useDispatch();
+    const handleClearCart = () => {
+        dispatch(clearCart());
+        toast.success("Cart Cleared Successfully");
+    }
     return (
 
         <div>
@@ -59,8 +72,8 @@ export const SidePopup = (props: any) => {
                             </div>
                             <div
                                 className={` pt-4 ${footerContent
-                                    ? "min-h-[64vh] max-h-[65.5vh]"
-                                    : "min-h-[81vh] max-h-[82vh]"
+                                    ? "min-h-[64vh] max-h-[25.5vh]"
+                                    : "min-h-[60vh] max-h-[60vh]"
                                     } overflow-y-auto scroll-none`}
                             >
                                 {children}
@@ -69,11 +82,15 @@ export const SidePopup = (props: any) => {
 
                         <div className="absolute bottom-0 z-[101] items-end p-4 md:p-5 w-full rounded-b-lg">
 
-                            <div className="cursor-pointer hover:bg-red-700 text-[18px] w-full mb-2 bg-red-600 text-center text-white rounded py-3">
-                                Delete All
+                            <div className="flex text-white my-2 items-center justify-between">
+                                <p>Total : </p>
+                                <p>${totalAmount.toFixed(2)}</p>
+                            </div>
+                            <div onClick={() => handleClearCart()} className="cursor-pointer hover:bg-red-700 text-[18px] w-full mb-2 bg-red-600 text-center text-white rounded py-3">
+                                Clear All
                             </div>
 
-                            <div onClick={() => { router.push("/checkout"), setShow(false) }} className="cursor-pointer hover:bg-red-700 text-[18px] w-full bg-red-600 text-center text-white rounded py-3">
+                            <div onClick={() => { router.push("/checkout"), setShow(false) }} className="cursor-pointer hover:bg-green-700 text-[18px] w-full bg-green-600 text-center text-white rounded py-3">
                                 Checkout
                             </div>
                         </div>

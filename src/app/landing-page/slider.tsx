@@ -14,6 +14,7 @@ import ProductSale from './product-sale';
 import InstagramSection from './instagram-section';
 import NewTrends from './new-trends';
 import style from './slider.module.css'
+import NoResultFound from '@/components/no-result-found';
 
 const Slider = () => {
 
@@ -51,7 +52,7 @@ const Slider = () => {
                 </button>
             </div>
 
-            <Showcase />
+            {/* <Showcase /> */}
             <ProductList />
             <ProductSale />
             <InstagramSection />

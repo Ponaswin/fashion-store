@@ -9,9 +9,11 @@ import { fetchCreateProduct } from '@/redux/slices/createProduct-slice';
 import Model from '@/components/model'
 import toast from 'react-hot-toast';
 import AddToCart from '@/components/add-to-cart';
+import { Spinner } from '@/components/spinner';
+import NoResultFound from '@/components/no-result-found';
 import { useFormik } from "formik";
-
 import * as yup from "yup";
+import { getCartTotal, addToCart } from '@/redux/slices/cart-slice';
 
 
 
@@ -23,7 +25,10 @@ const AllProducts = () => {
     const [sort, setSort] = useState<string>('lowToHigh')
     const [searchValue, setSearchValue] = useState<string>('')
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState<boolean>(true)
     const productsPerPage = 12;
+    const { items, totalAmount, totalCount } = useSelector((state: any) => state?.cart)
+
 
 
 
@@ -31,8 +36,11 @@ const AllProducts = () => {
     useEffect(() => {
         dispatch(fetchAllProducts()).then((res: any) => {
             setAllProducts(res?.payload)
+            setLoading(false)
         })
+        dispatch(getCartTotal());
     }, [])
+
 
     // const allProducts = useSelector((state: any) => state?.products)
     const filteredProducts = allProducts.filter((product: any) => {
@@ -66,7 +74,9 @@ const AllProducts = () => {
 
     const router = useRouter()
 
-    const handleAddToCart = () => {
+    const handleAddToCart = (item: any) => {
+        console.log(item, "id")
+        dispatch(addToCart(item))
         toast.success("Added successfully")
     }
 
@@ -216,19 +226,24 @@ const AllProducts = () => {
                 <div className='w-[65%]'>
                     <p className='text-[15px] mb-2 font-semibold'>Showing {currentProducts.length} of {allProducts.length} records </p>
 
-                    <div className='grid grid-cols-1 gap-5 md:grid-cols-3 mb-5 w-[100%]'>
+                    {currentProducts?.length > 0 ? <div className='grid grid-cols-1 gap-5 md:grid-cols-3 mb-5 w-[100%]'>
 
                         {currentProducts?.map((product: any) => {
                             return (
-                                <div className='border rounded p-2' >
-                                    <div onClick={() => { handleIndividualProduct(product.id) }}><ProductCard key={product.id} productName={product?.name} productPrice={product?.price} productImg={product?.img} /></div>
-                                    <div onClick={() => handleAddToCart()} className='mt-2 cursor-pointer w-[50%]'><AddToCart /></div>
+                                <div key={product.id} className='border rounded p-2' >
+                                    <div onClick={() => { handleIndividualProduct(product.id) }}>
+                                        <ProductCard key={product.id} productName={product?.name} productPrice={product?.price} productImg={product?.img} /></div>
+                                    <div onClick={() => handleAddToCart(product)} className='mt-2 cursor-pointer w-[50%]'><AddToCart /></div>
                                 </div>
                             )
 
                         })}
 
-                    </div>
+                    </div> : <div className='flex mt-[100px] justify-center items-center w-[100%]'>
+                        {loading ? <Spinner classname={" w-[50px] h-[50px] "} /> : <NoResultFound />} </div>}
+
+
+
                 </div>
             </div>
 

@@ -1,15 +1,12 @@
 import Image from 'next/image'
-import React from 'react'
 import productSale from '../../../public/assets/images/product-sale.png'
 import BannerData from '@/components/banner-data'
 import { FaArrowRightLong } from 'react-icons/fa6'
+import React, { useState, useEffect } from "react";
 
 const ProductSale = () => {
 
-
-
-
-
+    
 
 
     return (
@@ -31,7 +28,7 @@ const ProductSale = () => {
             </div>
 
             <div>
-                <BannerData title="DEAL OF THE WEEK" heading1="Multi-pocket Chest" heading2="Bag Black" content="29 : 17 : 56 : 32" contentStyle="text-[30px] font-semibold" />
+                <BannerData title="DEAL OF THE WEEK" heading1="Multi-pocket Chest" heading2="Bag Black"  contentStyle="text-[30px] font-semibold" />
             </div>
 
 
