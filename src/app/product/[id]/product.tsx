@@ -96,14 +96,13 @@ const Product = () => {
                     <p className=' md:text-[20px] font-bold'> Price :    <span className=' capitalize ms-5 md:text-[18px] text-gray-600 font-medium'>${product?.price}   </span> </p>
                     <p className=' md:text-[20px] font-bold'>Image :     <span className=' capitalize ms-3 md:text-[18px] text-gray-600 font-medium'> {product?.img}     </span>   </p>
                     <p className=' md:text-[20px] font-bold'>Category :  <span className=' capitalize ms-2 md:text-[18px] text-gray-600 font-medium'> {product?.category}</span>   </p>
-                    <div className=" w-content mt-[20px] flex gap-[40px]">
+                    {/* <div className=" w-content mt-[20px] flex gap-[40px]">
                         <button onClick={() => handleUpdate()} className="md:py-3 p-2 md:px-5  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Edit Product</button>
 
                         <button onClick={() => showDeleteModel()} className="text-white p-2 bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center md:px-[40px] md:py-3 text-center">
                             Delete
                         </button>
-
-                    </div>
+                    </div> */}
 
                 </div>
 

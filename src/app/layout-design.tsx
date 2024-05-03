@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import { Spinner } from '@/components/spinner';
+import AnimateLoading from '@/components/animate-loading';
 import { Provider } from 'react-redux';
 const LayoutDesign = ({ children }: { children: React.ReactNode }) => {
 
@@ -16,10 +17,8 @@ const LayoutDesign = ({ children }: { children: React.ReactNode }) => {
     return (
         <Provider store={store}>
             <PersistGate loading={
+                <AnimateLoading />
 
-                <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
-                    <Spinner classname={" w-[80px] h-[80px]   "} />
-                </div>
             } persistor={persistStore(store)}>
 
 

@@ -16,8 +16,6 @@ import * as yup from "yup";
 import { getCartTotal, addToCart } from '@/redux/slices/cart-slice';
 import { SidePopup } from '@/components/side-model';
 
-
-
 const AllProducts = () => {
 
     const dispatch = useDispatch()
@@ -25,8 +23,6 @@ const AllProducts = () => {
     const [show, setShow] = useState<boolean>(false)
     const [sort, setSort] = useState<string>('lowToHigh')
     const [searchValue, setSearchValue] = useState<string>('')
-
-
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState<boolean>(true)
     const getUser = useSelector((state: any) => state.createUser?.token)
@@ -47,7 +43,6 @@ const AllProducts = () => {
     }, [])
 
 
-    // const allProducts = useSelector((state: any) => state?.products)
     const filteredProducts = allProducts.filter((product: any) => {
         return product.name.toLowerCase().includes(searchValue.toLowerCase())
     })
@@ -139,7 +134,7 @@ const AllProducts = () => {
                 show={show}
                 setShow={setShow}
             >
-                <form className='w-[500px]' onSubmit={formik.handleSubmit}>
+                <form className='md:w-[500px]' onSubmit={formik.handleSubmit}>
                     <div className='flex flex-col gap-2 '>
                         <label className='text-white' htmlFor="name">Product Name : </label>
                         <input

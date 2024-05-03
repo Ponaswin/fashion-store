@@ -24,6 +24,7 @@ import { MdDelete } from "react-icons/md";
 import banner3 from "../../../public/assets/images/banner3.jpg";
 import { decrease, increase, remove } from '@/redux/slices/cart-slice';
 import { getCartTotal } from '@/redux/slices/cart-slice';
+import { togglePopup } from '@/redux/slices/cart-popup-slice';
 
 const Header = () => {
     const pathname = usePathname();
@@ -40,6 +41,7 @@ const Header = () => {
     const [toggle, setToggle] = useState(false)
     console.log(getUser, "getUser")
     console.log(loggedUser?.access_token, "loggedUser")
+    const isPopupOpen = useSelector((state: any) => state.popup?.isOpen);
 
 
     const handleLogout = () => {
@@ -54,7 +56,7 @@ const Header = () => {
     return (
         <div>
 
-            <SidePopup show={show} setShow={setShow} title="Cart Items" >
+            <SidePopup show={isPopupOpen} setShow={setShow} title="Cart Items" >
 
                 {items?.length > 0 ? items?.map((item: any) => (
                     <div className='h-[70px] select-none mt-2 w-[90%] mx-auto rounded bg-gray-800 flex items-center text-white border justify-around' key={item.id}>
@@ -133,7 +135,7 @@ const Header = () => {
 
 
                     <div className={` items-center justify-center mt-[50px] md:mt-0 flex gap-4 ${toggle ? "block" : "hidden"} w-[100%] md:block md:w-auto`}>
-                        <div onClick={() => setShow(true)} className='cursor-pointer relative p-2 rounded-full hover:shadow hover:bg-gray-200 flex items-center gap-1'><MdOutlineShoppingCart className='w-[20px] h-[20px]' />
+                        <div onClick={() => dispatch(togglePopup())} className='cursor-pointer relative p-2 rounded-full hover:shadow hover:bg-gray-200 flex items-center gap-1'><MdOutlineShoppingCart className='w-[20px] h-[20px]' />
                             <span className='bg-black  text-white py-0 absolute top-0 left-5 px-1 text-[10px] rounded-full'>{totalCount}</span>
                         </div>
                         {/* <div className='border rounded-full relative ' ><RxAvatar size={22} className='cursor-pointer rounded-full hover:shadow hover:bg-black-200 border' /></div> */}

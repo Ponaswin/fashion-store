@@ -9,6 +9,7 @@ import userLoginSlice from "./slices/login-user-slice";
 import cartSlice from "./slices/cart-slice";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import popupSlice from "./slices/cart-popup-slice";
 
 const persistConfig = {
   key: "root",
@@ -25,6 +26,7 @@ const reducer = combineReducers({
   createUser: createUserSlice,
   loginUser: userLoginSlice,
   cart: cartSlice,
+  cartPopup: popupSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
