@@ -7,6 +7,29 @@ import hero2edit from '../../../public/assets/images/hero2edit.jpg'
 
 const ProductSale = () => {
 
+    const [timeLeft, setTimeLeft] = useState(1000000);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setTimeLeft(prevTimeLeft => {
+                if (prevTimeLeft === 0) {
+                    clearInterval(timer);
+                    return 0;
+                }
+                return prevTimeLeft - 1;
+            });
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
+
+    const formatTime = (time: any) => {
+        const days = Math.floor(time / 86400);
+        const hours = Math.floor((time % 86400) / 3600);
+        const minutes = Math.floor((time % 3600) / 60);
+        const seconds = time % 60;
+        return `${days < 10 ? '0' + days : days} : ${hours < 10 ? '0' + hours : hours} : ${minutes < 10 ? '0' + minutes : minutes} : ${seconds < 10 ? '0' + seconds : seconds}`;
+    };
 
 
 
@@ -23,7 +46,10 @@ const ProductSale = () => {
 
             <Image src={productSale} alt="..." />
 
-            <BannerData title={"DEAL OF THE WEEK"} heading1={"Multi-pocket Chest "} heading2={"Bag Black"} content={"29 : 15 : 52 : 39"} />
+            <BannerData title={"DEAL OF THE WEEK"} heading1={"Multi-pocket Chest "} heading2={"Bag Black"}
+                content={formatTime(timeLeft)} content2={`days : hrs : min  : sec`}
+                contentStyle="text-[28px] font-bold"
+            />
 
         </div>
 

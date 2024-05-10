@@ -10,7 +10,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { FaMinusCircle } from "react-icons/fa";
 import { FaPlusCircle } from "react-icons/fa";
 import { RxAvatar } from "react-icons/rx";
-
+import EmptyCart from '../../../public/assets/images/EmptyCart.png'
 
 import { IoIosArrowDown } from "react-icons/io";
 import style from './header.module.css'
@@ -35,7 +35,6 @@ const Header = () => {
     const loggedUser = useSelector((state: any) => state.loginUser)
     const { totalCount, totalAmount, items } = useSelector((state: any) => state.cart)
     const [avatarClick, setAvatarClick] = useState(false)
-    const cartpopup: any = useSelector((state: any) => state.cartPopUp);
     const dispatch = useDispatch()
     const router = useRouter()
     const [toggle, setToggle] = useState(false)
@@ -43,6 +42,11 @@ const Header = () => {
     console.log(loggedUser?.access_token, "loggedUser")
     const isPopupOpen = useSelector((state: any) => state.popup?.isOpen);
 
+
+    const cartPopup = useSelector((state: any) => state.cartPopup)
+    const handleCartPopup = () => {
+        dispatch(togglePopup())
+    }
 
     const handleLogout = () => {
         localStorage.clear();
@@ -54,7 +58,7 @@ const Header = () => {
     }, [items])
 
     return (
-        <div>
+        <div className='shadow'>
 
             <SidePopup show={isPopupOpen} setShow={setShow} title="Cart Items" >
 
@@ -71,7 +75,11 @@ const Header = () => {
                             <MdDelete size={20} color='red' onClick={() => dispatch(remove(item.id))} className='cursor-pointer' />
                         </div>
                     </div>
-                )) : <p className='text-center text-white'>No Items</p>}
+                )) : <div className='flex flex-col mt-[80px] items-center gap-3 '>
+                    <p className=' text-white'>Cart is Empty</p>
+                    <Image src={EmptyCart} width={200} height={200} alt="..." />
+                    <div><Link href="/all-products" onClick={() => dispatch(togglePopup())} className='text-white border rounded-[15px] px-4 py-2 hover:text-gray-300'>Explore Products</Link></div>
+                </div>}
 
 
 
@@ -104,7 +112,7 @@ const Header = () => {
                     </button>
 
 
-                    <div className={`${toggle ? "block" : "hidden"} w-full md:block md:w-auto`} id="navbar-default">
+                    <div className={`${toggle ? "block" : "hidden"} md:me-[100px] w-full md:block md:w-auto`} id="navbar-default">
                         <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white  dark:border-gray-700">
                             <li className={`${style.link}`}>
                                 <Link href="/" className="block py-2 px-3 text-black rounded md:bg-transparent  md:p-0 dark:text-black " aria-current="page">Home</Link>
@@ -135,10 +143,10 @@ const Header = () => {
 
 
                     <div className={` items-center justify-center mt-[50px] md:mt-0 flex gap-4 ${toggle ? "block" : "hidden"} w-[100%] md:block md:w-auto`}>
-                        <div onClick={() => dispatch(togglePopup())} className='cursor-pointer relative p-2 rounded-full hover:shadow hover:bg-gray-200 flex items-center gap-1'><MdOutlineShoppingCart className='w-[20px] h-[20px]' />
+                        <div onClick={() => handleCartPopup()} className='cursor-pointer relative p-2 rounded-full hover:shadow hover:bg-gray-200 flex items-center gap-1'><MdOutlineShoppingCart className='w-[20px] h-[20px]' />
                             <span className='bg-black  text-white py-0 absolute top-0 left-5 px-1 text-[10px] rounded-full'>{totalCount}</span>
                         </div>
-                        {/* <div className='border rounded-full relative ' ><RxAvatar size={22} className='cursor-pointer rounded-full hover:shadow hover:bg-black-200 border' /></div> */}
+
 
                     </div>
 

@@ -5,14 +5,11 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { clearCart } from "@/redux/slices/cart-slice";
 import { useDispatch, useSelector } from "react-redux";
+import { togglePopup } from "@/redux/slices/cart-popup-slice";
 
 export const SidePopup = (props: any) => {
     const {
         modelStyle,
-        handleClose,
-        onClick,
-        setShow,
-        show,
         title,
         children,
         width,
@@ -25,6 +22,7 @@ export const SidePopup = (props: any) => {
 
     const router = useRouter();
     const { totalCount, totalAmount, items } = useSelector((state: any) => state?.cart)
+    const CartPopup = useSelector((state: any) => state?.cartPopup?.isOpen);
 
 
 
@@ -37,7 +35,7 @@ export const SidePopup = (props: any) => {
 
         <div>
             <div
-                className={`${show ? "block" : "hidden"
+                className={`${CartPopup ? "block" : "hidden"
                     } fixed w-full z-[100] bg-[#00000066] bg-opacity-50 h-screen ${modelStyle}`}
             >
                 <div className="flex justify-end ">
@@ -58,7 +56,7 @@ export const SidePopup = (props: any) => {
                                     {topButton && <div> {topButton}</div>}
                                     {!closeIcon && (
                                         <button
-                                            onClick={() => setShow(false)}
+                                            onClick={() => dispatch(togglePopup())}
                                             type="button"
                                             className={`${closeIconStyle} text-white text-sm ml-[12px] inline-flex justify-center items-center`}
                                         >
@@ -86,11 +84,23 @@ export const SidePopup = (props: any) => {
                                 <p>Total : </p>
                                 <p>${totalAmount?.toFixed(2)}</p>
                             </div>
-                            <div onClick={() => handleClearCart()} className="cursor-pointer hover:bg-red-700 text-[18px] w-full mb-2 bg-red-600 text-center text-white rounded py-3">
+                            <div onClick={() => {
+                                if (items?.length) {
+                                    handleClearCart()
+                                }
+                            }
+                            } className={` ${!items?.length ? "cursor-not-allowed bg-red-900 hover:bg-red-900" : "cursor-pointer"} hover:bg-red-700 text-[18px] w-full mb-2 bg-red-600 text-center text-white rounded py-3`}>
                                 Clear All
                             </div>
 
-                            <div onClick={() => { router.push("/checkout"), setShow(false) }} className="cursor-pointer hover:bg-green-700 text-[18px] w-full bg-green-600 text-center text-white rounded py-3">
+                            <div onClick={() => {
+                                if (items?.length) {
+                                    { router.push("/checkout"), dispatch(togglePopup()) }
+                                }
+                            }}
+                                className={`${!items?.length ? "cursor-not-allowed bg-green-900 hover:bg-green-900" : "cursor-pointer"}
+                             hover:bg-green-700 text-[18px] w-full bg-green-600 text-center text-white rounded py-3
+                            `}>
                                 Checkout
                             </div>
                         </div>

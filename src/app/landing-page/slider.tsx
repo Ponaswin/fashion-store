@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '../../../public/assets/images/logo.png'
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
@@ -16,20 +16,34 @@ import NewTrends from './new-trends';
 import style from './slider.module.css'
 import NoResultFound from '@/components/no-result-found';
 import hero2edit from '../../../public/assets/images/hero2edit.jpg'
+import { useDispatch, useSelector } from 'react-redux';
+import { closePopup } from '@/redux/slices/cart-popup-slice';
 
 const Slider = () => {
 
     const router = useRouter()
+    const dispatch = useDispatch()
+    const [currentSlide, setCurrentSlide] = useState(0);
+    useEffect(() => {
+        dispatch(closePopup())
+    }, [])
+
 
     const [arrowClick, setArrowClick] = useState<boolean>(false)
+
+
 
     return (
         <div>
 
+
+
+
+
+
+
             <div id="animation-carousel" className="relative w-full " data-carousel="static">
-                {/* <!-- Carousel wrapper --> */}
                 <div className="relative overflow-hidden  ">
-                    {/* <!-- Item 1 --> */}
                     <div className={` hidden md:block ${style.slider}w-full h-[100vh]`} data-carousel-item>
                         <div className=' md:bg-contain'>
                             <Image className='w-full' src={arrowClick ? hero1 : hero2} alt='...' />
@@ -48,22 +62,10 @@ const Slider = () => {
 
 
                 </div>
-                {/* <!-- Slider controls --> */}
-                {/* <button onClick={() => setArrowClick(!arrowClick)} type="button" className="md:block hidden absolute top-0 start-0 z-30  items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                    <span className="inline-flex items-center justify-center w-10 h-10 ">
-                        <FaArrowLeftLong className='md:block hidden' size={25} color='' />
-                        <span className="sr-only">Previous</span>
-                    </span>
-                </button>
-                <button onClick={() => setArrowClick(!arrowClick)} type="button" className="md:block hidden absolute top-0 end-0 z-30  items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                    <span className="inline-flex items-center justify-center w-10 h-10  ">
-                        <FaArrowRightLong size={25} color='' />
-                        <span className="sr-only">Next</span>
-                    </span>
-                </button>
-             */}
+
             </div>
-            {/* <Showcase /> */}
+
+
             <ProductList />
             <ProductSale />
             <InstagramSection />

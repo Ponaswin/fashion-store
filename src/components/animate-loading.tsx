@@ -3,16 +3,16 @@ import React from 'react'
 const animateLoading = () => {
     return (
         <div>
-            <div className="bg-white flex justify-center items-center w-full h-[98vh] p-5">
+            <div className="bg-black flex justify-center items-center w-full h-[100vh] p-5">
                 <div className=" p-2 rounded-md ">
                     <div className="flex items-end gap-1">
-                        <span className="text-6xl font-semibold text-gray-600">Fashi</span>
+                        <span className="text-8xl font-semibold text-gray-600">Fashi</span>
 
                         <svg
                             className="animate-bounce mb-1"
                             fill="#F97316"
-                            width="30px"
-                            height="30px"
+                            width="50px"
+                            height="50px"
                             viewBox="0 0 50 50"
                             xmlns="http://www.w3.org/2000/svg"
                         >
@@ -22,13 +22,13 @@ const animateLoading = () => {
                                 transform="translate(-41 -25)"
                             />
                         </svg>
-                        <span className="text-6xl  font-semibold text-gray-600">n</span>
-                        <span className="text-6xl font-semibold text-orange-500">St</span>
+                        <span className="text-8xl  font-semibold text-gray-600">n</span>
+                        <span className="text-8xl font-semibold text-orange-500">St</span>
                         <svg
                             className="animate-spin mb-2"
                             fill="#F97316"
-                            width="30px"
-                            height="30px"
+                            width="50px"
+                            height="50px"
                             viewBox="0 0 50 50"
                             xmlns="http://www.w3.org/2000/svg"
                         >
@@ -38,10 +38,10 @@ const animateLoading = () => {
                                 transform="translate(-41 -25)"
                             />
                         </svg>
-                        <span className="text-6xl font-semibold text-orange-500">re</span>
+                        <span className="text-8xl font-semibold text-orange-500">re</span>
                     </div>
                 </div>
-            </div>;
+            </div>
 
         </div>
     )

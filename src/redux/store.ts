@@ -27,6 +27,7 @@ const reducer = combineReducers({
   loginUser: userLoginSlice,
   cart: cartSlice,
   cartPopup: popupSlice,
+  
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

@@ -55,7 +55,7 @@ const SignUp = () => {
     <div className='bg-[url(/assets/images/bg.jpg)] h-[100vh] w-[100vw] bg-cover bg-no-repeat flex justify-center items-center'>
 
       <div className={`bg-white min-h-[400px] p-5 ${style.shadow} w-[40%]  rounded-[10px] flex flex-col justify-center `}>
-        <p className='text-[30px] font-medium text-center text-[#e63637]'>Male Fashion</p>
+        <p className='text-[30px] font-medium text-center text-[#e63637]'>Fashion Store</p>
 
         <form onSubmit={formik.handleSubmit}>
 
@@ -114,7 +114,7 @@ const SignUp = () => {
           </div>
           <button type="submit" className='mt-5 w-[100%] h-[50px] py-[12px] px-[30px] hover:bg-cyan-700 bg-[#3d87db] text-white font-medium rounded-md'>Create Account</button>
         </form>
-        <div className='cursor-pointer text-center mt-3' onClick={() => router.push('/signin')} >
+        <div className='cursor-pointer hover:text-gray-600 text-center mt-3' onClick={() => router.push('/signin')} >
           Back to Login
         </div>
 

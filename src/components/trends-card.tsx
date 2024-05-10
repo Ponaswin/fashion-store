@@ -23,7 +23,7 @@ const TrendsCard = (props: any) => {
         <Image src={img} alt="..." />
       </div>
 
-      <div className={`bg-white md:w-[300px]  ${style.shadow} flex gap-2 flex-col ps-[25px] py-5  absolute top-[230px] `}>
+      <div className={`bg-white md:w-[300px]  ${style.shadow} flex gap-2 flex-col ps-[25px] py-5  absolute top-[200px] `}>
         <div className={`flex items-center mb-[5px] gap-4`}><IoCalendarNumberOutline /> <p className='text-[13px]'>{date}</p></div>
         <div><div className={`text-[18px] margin-0 font-medium tracking-wide leading-tight`}>{content1}</div>
           <div className={`text-[18px] margin-0 font-medium tracking-wide leading-tight`}>{content2}</div></div>

@@ -46,7 +46,7 @@ const SignIn = () => {
         <div className='bg-[url(/assets/images/bg.jpg)] h-[100vh] w-[100vw] bg-cover bg-no-repeat flex justify-center items-center'>
 
             <div className={`bg-white min-h-[300px] p-5 ${style.shadow} w-[40%]  rounded-[10px] flex flex-col justify-center `}>
-                <p className='text-[30px] font-medium text-center text-[#e63637]'>Male Fashion</p>
+                <p className='text-[30px] font-medium text-center text-[#e63637]'>Fashion Store</p>
 
                 <form className='flex flex-col mt-5 gap-4' onSubmit={formik.handleSubmit}>
                     <div>  <input
@@ -79,7 +79,7 @@ const SignIn = () => {
                     </div>
 
                     <button type="submit" className='mt-5 w-[100%] h-[50px] py-[12px] px-[30px] hover:bg-cyan-700 bg-[#3d87db] text-white font-medium rounded-md'>Login</button>
-                    <div className='text-center cursor-pointer ' onClick={() => router.push('/')}>
+                    <div className='text-center cursor-pointer hover:text-gray-600 ' onClick={() => router.push('/')}>
                         Back to Home
                     </div>
 
